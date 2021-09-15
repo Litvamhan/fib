@@ -19,8 +19,8 @@ int fib(int n)
 
 int main()
 {
-	int n= 8;
-	
+	int n;
+	cin>>n;
 	cout << fib(n);
 	return 0;
 }
