@@ -20,6 +20,7 @@ int fib(int n)
 int main()
 {
 	int n;
+	cout<<"Enter a value";
 	cin>>n;
 	cout << fib(n);
 	return 0;
