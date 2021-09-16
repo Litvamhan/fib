@@ -4,16 +4,16 @@ using namespace std;
 
 int fib(int n)
 {
-	int a = 0, b = 1, c, i;
+	int x = 0, y = 1, z, i;
 	if( n == 0)
-		return a;
+		return x;
 	for(i = 2; i <= n; i++)
 	{
-	c = a + b;
-	a = b;
-	b = c;
+	z = x + y;
+	x = y;
+	y = z;
 	}
-	return b;
+	return y;
 }
 
 
