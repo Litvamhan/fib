@@ -1,72 +1,64 @@
  
-#include <bits/stdc++.h>
-using namespace std;
+#include <stdio.h>
+#define Max 5000
 
-
-#define ll long long int
-#define f(a,b,i) for(ll i=a;i<b;i++)
-
-
-string addition(string s1,string s2)
+void add(char a[], char b[], char p[])
 {
-    if (s1.length() > s2.length())
-        swap(s1, s2);
- 
-    string s = "";
- 
-    int n1 = s1.length(), n2 = s2.length();
-
-    reverse(s1.begin(), s1.end());
-    reverse(s2.begin(), s2.end());
- 
-    int x = 0;
-    for (int i=0; i<n1; i++)
-    {
-        int sum = ((s1[i]-'0')+(s2[i]-'0')+x);
-        s.push_back(sum%10 + '0');
- 
-        x = sum/10;
-    }
-    for (int i=n1; i<n2; i++)
-    {
-        int sum = ((s2[i]-'0')+x);
-        s.push_back(sum%10 + '0');
-        x = sum/10;
-    }
- 
-    if (x)
-        s.push_back(x+'0');
-    reverse(s.begin(), s.end());
- 
-    return s;
+  int k = 0;
+  for (int i = Max - 1; i >= 0; i--)
+  {
+    int d = (a[i] - '0') + (b[i] - '0') + k;
+    p[i] = (d % 10) + '0';
+    k = d / 10;
+  }
 }
 
-string fib(int n)
+void copy(char a[], char b[])
 {
-    string a="0",b="1",c;
-    if(n==0)
-    return a;
-    if(n==1)
-    return b;
-    f(2,n+1,i)
-    {
-        c=addition(a,b);
-        a=b;
-        b=c;
-    }
-    return b;
+  for (int i = Max - 1; i >= 0; i--)
+    a[i] = b[i];
 }
 
+char fib1[Max];
+char fib2[Max];
+char c[Max];
 
 int main()
 {
-   
-    ll n;
-    cout<<"Enter a value"<<endl;
-    cin>>n;
-    cout<<fib(n);
 
-    return 0;    
+  for (int i = 0; i < Max; i++)
+  {
+    fib1[i] = fib2[i] = c[i] = '0';
+  }
+  fib2[Max - 1] = '1';
+
+  int n;
+  scanf("%d", &n);
+
+  if (n == 0 || n == 1)
+  {
+    printf("%c", n + '0');
+  }
+  else
+  {
+    for (int i = 2; i <= n; i++)
+    {
+      add(fib1, fib2, c);
+      copy(fib1, fib2);
+      copy(fib2, c);
+    }
+
+    int t = 0;
+    for (int i = 0; i < Max; i++)
+    {
+      if (t == 0 && c[i] == '0')
+        continue;
+
+      if (t == 0 && c[i] != '0')
+        t = 1;
+      printf("%c", c[i]);
+    }
+    printf("\n");
+  }
+  return 0;
 }
-
-
