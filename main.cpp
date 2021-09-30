@@ -62,6 +62,7 @@ int main()
 {
    
     ll n;
+    cout<<"Enter a value"<<endl;
     cin>>n;
     cout<<fib(n);
 
